@@ -1,0 +1,76 @@
+apiVersion: v1
+kind: DeploymentConfig
+metadata:
+  name: ${MODULE_NAME}
+  namespace: ${PROJECT_NAME}
+  selfLink: /oapi/v1/namespaces/${PROJECT_NAME}/deploymentconfigs/${MODULE_NAME}
+  labels:
+    app: ${MODULE_NAME}
+  annotations:
+    neoflex.ru/handmaid-by: gpoznyakov@neoflex.ru
+spec:
+  strategy:
+    type: Rolling
+    rollingParams:
+      updatePeriodSeconds: 10
+      intervalSeconds: 1
+      timeoutSeconds: 600
+      maxUnavailable: 25%
+      maxSurge: 25%
+    resources: {}
+    activeDeadlineSeconds: 21600
+  triggers:
+    - type: ConfigChange
+    - type: ImageChange
+      imageChangeParams:
+        automatic: true
+        containerNames:
+          - ${MODULE_NAME}
+        from:
+          kind: ImageStreamTag
+          namespace: ${PROJECT_NAME}
+          name: '${MODULE_NAME}:${MODULE_TAG}'
+  replicas: 1
+  test: false
+  paused: false
+  selector:
+    app: ${MODULE_NAME}
+    deploymentconfig: ${MODULE_NAME}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: ${MODULE_NAME}
+        deploymentconfig: ${MODULE_NAME}
+      annotations:
+        neoflex.ru/handmaid-by: gpoznyakov@neoflex.ru
+    spec:
+      volumes:
+        - name: nf-esb-home1
+          persistentVolumeClaim:
+            claimName: nf-esb-home-volume-claim
+      containers:
+        - name: ${MODULE_NAME}
+          image: '${OPENSHIFT_REGISTRY}/${PROJECT_NAME}/${MODULE_NAME}:${MODULE_TAG}'
+          ports:
+            - containerPort: ${MODULE_PORT}
+              protocol: TCP
+          resources: {}
+          volumeMounts:
+            - name: nf-esb-home1
+              mountPath: /app/home
+          livenessProbe:
+            tcpSocket:
+              port: ${MODULE_PORT}
+            initialDelaySeconds: 25
+            timeoutSeconds: 1
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 3
+          terminationMessagePath: /dev/termination-log
+          imagePullPolicy: Always
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+      securityContext:
+        supplementalGroups: [5555]
