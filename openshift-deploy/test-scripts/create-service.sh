@@ -17,9 +17,9 @@ for TEMPLATE in $(ls ${BUILD_SCRIPT_DIR}/template); do
 done
 
 WORK_DIR="openshift-deploy"
-ssh root@194.67.211.163 mkdir -v ${WORK_DIR}/dev 2>/dev/null
+ssh root@194.67.211.163 mkdir -v ${WORK_DIR}/test 2>/dev/null
 ssh root@194.67.211.163 rm -rf ${WORK_DIR}/${MODULE_NAME}.*
-scp ${BUILD_SCRIPT_DIR}/tmp/${MODULE_NAME}.* root@194.67.211.163:${WORK_DIR}/dev
-ssh root@194.67.211.163 "cd ${WORK_DIR}/dev;. ${MODULE_NAME}.deploy-module.sh"
+scp ${BUILD_SCRIPT_DIR}/tmp/${MODULE_NAME}.* root@194.67.211.163:${WORK_DIR}/test
+ssh root@194.67.211.163 "cd ${WORK_DIR}/test;. ${MODULE_NAME}.deploy-module.sh"
 
 exit
