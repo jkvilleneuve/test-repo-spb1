@@ -51,7 +51,7 @@ spec:
             claimName: nf-esb-home-volume-claim
       containers:
         - name: ${MODULE_NAME}
-          image: '${OPENSHIFT_REGISTRY}/${PROJECT_NAME}/${MODULE_NAME}:${MODULE_TAG}'
+          image: '/${PROJECT_NAME}/${MODULE_NAME}:${MODULE_TAG}'
           ports:
             - containerPort: ${MODULE_PORT}
               protocol: TCP

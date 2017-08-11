@@ -1,11 +1,11 @@
 #!/bin/sh
 set +e
 
-LIST=$(cat ${WORKSPACE}/trunk/z-build-script-docker/openshift-moduleList.properties | grep -v '^#')
+LIST=$(cat ${WORKSPACE}/openshift-deploy/moduleList.properties | grep -v '^#')
 
 #chmod +x ${WORKSPACE}/trunk/z-build-script-docker/scripts/*.sh
 
-export BUILD_SCRIPT_DIR=${WORKSPACE}/trunk/z-build-script-docker/scripts
+export BUILD_SCRIPT_DIR=${WORKSPACE}/openshift-deploy/dev-scripts
 
 for module in $LIST
 do

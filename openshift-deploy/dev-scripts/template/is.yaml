@@ -6,14 +6,14 @@ metadata:
   annotations:
     openshift.io/image.insecureRepository: "true"
   spec:
-    dockerImageRepository: docker.io/jkvilleneuve/${MODULE_NAME}:${MODULE_TAG}
+    dockerImageRepository: ${DOCKER_REGISTRY}/${MODULE_NAME}:${MODULE_TAG}
 spec:
   tags:
     - name: 1.0.0
       annotations: null
       from:
         kind: DockerImage
-        name: 'docker.io/jkvilleneuve/${MODULE_NAME}:${MODULE_TAG}'
+        name: '${DOCKER_REGISTRY}/${MODULE_NAME}:${MODULE_TAG}'
       generation: 1
       importPolicy:
         insecure: true

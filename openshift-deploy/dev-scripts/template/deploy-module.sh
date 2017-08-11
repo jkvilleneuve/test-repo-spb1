@@ -16,7 +16,7 @@ if [ -z "$(oc get svc ${MODULE_NAME} --template='{{.metadata.name}}' 2>/dev/null
 fi
 
 # Cleanup
-docker rmi $(docker images | grep "<none>" | awk "{print $3}" 2>/dev/null) 2>/dev/null
+#docker rmi $(docker images | grep "<none>" | awk "{print $3}" 2>/dev/null) 2>/dev/null
 
 echo "####################################################################################################"
 echo "# Tag and Push: [${MODULE_NAME}]"
