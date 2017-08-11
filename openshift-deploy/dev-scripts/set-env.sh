@@ -4,7 +4,7 @@
 # TODO ROUTE_HOST 194.67.211.163
 
 export DOCKER_REGISTRY="docker.io/jkvilleneuve"
-export ROUTE_HOST="194.67.210.226"
+export ROUTE_HOST="z-dev-project.apps.oc.ymelnik.ru"
 
 # temporary hardcoded properties
 export PROJECT_NAME="z-dev-project"
@@ -17,5 +17,5 @@ fi
 
 export MODULE_PATH=$(cat ${WORKSPACE}/trunk/${MODULE_NAME}/docker/Dockerfile | awk '/SERVICE_PATH/ {print $3}' 2>/dev/null)
 if [ -z "${MODULE_PATH}" ]; then
-  export MODULE_PATH="/${PROJECT_NAME}/${MODULE_NAME}/user"
+  export MODULE_PATH="/user"
 fi

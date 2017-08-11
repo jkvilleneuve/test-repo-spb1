@@ -4,7 +4,7 @@
 # TODO ROUTE_HOST 194.67.211.163
 
 export DOCKER_REGISTRY="docker.io/jkvilleneuve"
-export ROUTE_HOST="194.67.210.226"
+export ROUTE_HOST="z-prod-project.apps.oc.ymelnik.ru"
 
 # temporary hardcoded properties
 export PROJECT_NAME="z-prod-project"

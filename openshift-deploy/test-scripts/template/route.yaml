@@ -5,7 +5,7 @@ metadata:
   namespace: ${PROJECT_NAME}
   selfLink: /oapi/v1/namespaces/${PROJECT_NAME}/routes/${MODULE_NAME}
 spec:
-  host: ${ROUTE_HOST}
+  host: ${MODULE_NAME}-${ROUTE_HOST}
   path: ${MODULE_PATH}
   to:
     kind: Service
