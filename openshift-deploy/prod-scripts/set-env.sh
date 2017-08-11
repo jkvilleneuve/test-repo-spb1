@@ -17,5 +17,5 @@ fi
 
 export MODULE_PATH=$(cat ${WORKSPACE}/trunk/${MODULE_NAME}/docker/Dockerfile | awk '/SERVICE_PATH/ {print $3}' 2>/dev/null)
 if [ -z "${MODULE_PATH}" ]; then
-  export MODULE_PATH="/${PROJECT_NAME}/${MODULE_NAME}/user"
+  export MODULE_PATH="/user"
 fi
