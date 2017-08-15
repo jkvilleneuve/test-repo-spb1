@@ -8,14 +8,14 @@ export ROUTE_HOST="z-dev-project.apps.oc.ymelnik.ru"
 
 # temporary hardcoded properties
 export PROJECT_NAME="z-dev-project"
-export MODULE_TAG="1.0.0"
+export MODULE_TAG="18"
 
 export MODULE_PORT=$(cat ${WORKSPACE}/trunk/${MODULE_NAME}/docker/Dockerfile | awk '/SERVICE_PORT/ {print $3}' 2>/dev/null)
 if [ -z "${MODULE_PORT}" ]; then
-  export MODULE_PORT=8184
+  export MODULE_PORT=8081
 fi
 
 export MODULE_PATH=$(cat ${WORKSPACE}/trunk/${MODULE_NAME}/docker/Dockerfile | awk '/SERVICE_PATH/ {print $3}' 2>/dev/null)
 if [ -z "${MODULE_PATH}" ]; then
-  export MODULE_PATH="/user"
+  export MODULE_PATH="/${MODULE_NAME}/calculate"
 fi
