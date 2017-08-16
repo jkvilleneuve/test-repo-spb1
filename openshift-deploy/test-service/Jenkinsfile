@@ -1,12 +1,12 @@
 pipeline {
 	agent any
-    stages {
-        stage('Test') {
-            steps {
-                sh 'echo "### start"'
-                sh 'echo ${MODULE}'
-                sh 'echo $PATH'
-            }
-        }
-    }
+	stages {
+		stage('Test') {
+			steps {
+				sh 'echo "### start"'
+				sh 'echo ${MODULE}'
+				sh 'echo $PATH'
+			}
+		}
+	}
 }
