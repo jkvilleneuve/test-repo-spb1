@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Route
+metadata:
+  name: ${MODULE_NAME}
+  namespace: ${PROJECT_NAME}
+  selfLink: /oapi/v1/namespaces/${PROJECT_NAME}/routes/${MODULE_NAME}
+spec:
+  host: ${MODULE_NAME}-${ROUTE_HOST}
+  path: ${MODULE_PATH}
+  to:
+    kind: Service
+    name: ${MODULE_NAME}
+    weight: 100
+  port:
+    targetPort: ${MODULE_NAME}
+  wildcardPolicy: None

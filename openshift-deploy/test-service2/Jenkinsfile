@@ -1,0 +1,49 @@
+pipeline {
+	agent any
+	stages {
+		stage('DeployToDev') {
+			steps {
+				sh 'echo "####################"'
+				sh 'echo "tag=${MODULE_TAG}"'
+				build job: 'test-service2-to-dev', parameters: [string(name: 'MODULE_TAG', value: "${MODULE_TAG}")]
+			}
+		}
+		stage('AutoTestsOnDev') {
+			steps {
+				sh 'echo "####################"'
+				sh 'echo "tag=${MODULE_TAG}"'
+			}
+		}
+		stage('WaitingForApprovalToTest') {
+			steps {
+				sh 'echo "####################"'
+				sh 'echo "tag=${MODULE_TAG}"'
+			}
+		}
+		stage('DeployToTest') {
+			steps {
+				sh 'echo "####################"'
+				sh 'echo "tag=${MODULE_TAG}"'
+				build job: 'test-service2-to-test', parameters: [string(name: 'MODULE_TAG', value: "${MODULE_TAG}")]
+			}
+		}
+		stage('AutoTestsOnTest') {
+			steps {
+				sh 'echo "####################"'
+				sh 'echo "tag=${MODULE_TAG}"'
+			}
+		}
+		stage('WaitingForApprovalToProd') {
+			steps {
+				sh 'echo "####################"'
+				sh 'echo "tag=${MODULE_TAG}"'
+			}
+		}
+		stage('DeployToProd') {
+			steps {
+				sh 'echo "####################"'
+				sh 'echo "tag=${MODULE_TAG}"'
+			}
+		}
+	}
+}
