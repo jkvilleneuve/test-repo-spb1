@@ -7,14 +7,13 @@ export BUILD_SCRIPT_DIR=${WORKSPACE}/openshift-deploy/${MODULE_NAME}/dev-scripts
 export DOCKER_REGISTRY="docker.io/jkvilleneuve"
 export ROUTE_HOST="z-dev-project.apps.oc.ymelnik.ru"
 
-# temporary hardcoded properties
-export MODULE_TAG="1"
+export MODULE_TAG="$(cat ${WORKSPACE}/openshift-deploy/${MODULE_NAME}/release-tag)"
 
 export MODULE_PORT=8081
 export MODULE_PATH="/${MODULE_NAME}/calculate"
 
 echo "name: [${MODULE_NAME}]"
-
+echo "tag: [${MODULE_TAG}]"
 
 mkdir -vp ${BUILD_SCRIPT_DIR}/tmp 2>/dev/null
 rm -rf ${BUILD_SCRIPT_DIR}/tmp/${MODULE_NAME}.*
