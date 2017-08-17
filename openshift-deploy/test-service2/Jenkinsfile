@@ -3,45 +3,47 @@ pipeline {
 	stages {
 		stage('DeployToDev') {
 			steps {
-				sh 'echo "####################"'
+				sh 'echo "Run job for deploy test-service2 on Dev OpenShift project"'
 				sh 'echo "tag=${MODULE_TAG}"'
 				build job: 'test-service2-to-dev', parameters: [string(name: 'MODULE_TAG', value: "${MODULE_TAG}")]
 			}
 		}
-		stage('AutoTestsOnDev') {
+		stage('TestsOnDev') {
 			steps {
-				sh 'echo "####################"'
-				sh 'echo "tag=${MODULE_TAG}"'
+				sh 'echo "Run script to check availability of test-service"'
+				sh 'chmod -R 777 ${WORKSPACE}/openshift-deploy/test-service2/dev-tests'
+				sh '${WORKSPACE}/openshift-deploy/test-service2/dev-tests/test-service-available.sh'
 			}
 		}
-		stage('WaitingForApprovalToTest') {
+		stage('ApproveToTest') {
 			steps {
-				sh 'echo "####################"'
-				sh 'echo "tag=${MODULE_TAG}"'
+				sh 'echo "Wait for confirmation to install on the Test"'
+				input message: 'Deploy to Test?', ok: 'Deploy'
 			}
 		}
 		stage('DeployToTest') {
 			steps {
-				sh 'echo "####################"'
+				sh 'echo "Run job for deploy test-service on Test OpenShift project"'
 				sh 'echo "tag=${MODULE_TAG}"'
 				build job: 'test-service2-to-test', parameters: [string(name: 'MODULE_TAG', value: "${MODULE_TAG}")]
 			}
 		}
-		stage('AutoTestsOnTest') {
+		stage('TestsOnTest') {
 			steps {
-				sh 'echo "####################"'
-				sh 'echo "tag=${MODULE_TAG}"'
+				sh 'echo "Run script to get right answer from test-service"'
+				sh 'chmod -R 777 ${WORKSPACE}/openshift-deploy/test-service2/test-tests'
+				sh '${WORKSPACE}/openshift-deploy/test-service2/test-tests/test-service-answer.sh'
 			}
 		}
-		stage('WaitingForApprovalToProd') {
+		stage('ApproveToProd') {
 			steps {
-				sh 'echo "####################"'
-				sh 'echo "tag=${MODULE_TAG}"'
+				sh 'echo "Wait for confirmation to install on the Prodaction"'
+				input message: 'Deploy to Production?', ok: 'Deploy'
 			}
 		}
 		stage('DeployToProd') {
 			steps {
-				sh 'echo "####################"'
+				sh 'echo "Run job for deploy test-service on Production OpenShift project"'
 				sh 'echo "tag=${MODULE_TAG}"'
 			}
 		}
