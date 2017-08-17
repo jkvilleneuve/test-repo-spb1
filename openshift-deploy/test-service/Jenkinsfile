@@ -1,10 +1,11 @@
 pipeline {
 	agent any
 	stages {
-		stage('TestStage') {
+		stage('DeployToDev') {
 			steps {
 				sh 'echo "####################"'
 				sh 'echo "tag=${MODULE_TAG}"'
+				build 'test-service-to-dev'
 			}
 		}
 	}
