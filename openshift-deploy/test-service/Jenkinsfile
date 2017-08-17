@@ -12,6 +12,7 @@ pipeline {
 			steps {
 				sh 'echo "####################"'
 				sh 'echo "tag=${MODULE_TAG}"'
+				sh '${WORKSPACE}/openshift-deploy/test-service/dev-tests/test-service-available.sh'
 			}
 		}
 		stage('WaitingForApprovalToTest') {
@@ -24,7 +25,6 @@ pipeline {
 			steps {
 				sh 'echo "####################"'
 				sh 'echo "tag=${MODULE_TAG}"'
-				build job: 'test-service-to-test', parameters: [string(name: 'MODULE_TAG', value: "${MODULE_TAG}")]
 			}
 		}
 		stage('AutoTestsOnTest') {
