@@ -15,15 +15,6 @@ if [ -z "$(oc get svc ${MODULE_NAME} --template='{{.metadata.name}}' -n ${PROJEC
   oc create -f ${MODULE_NAME}.dc.yaml
 fi
 
-# Cleanup
-#docker rmi $(docker images | grep "<none>" | awk "{print $3}" 2>/dev/null) 2>/dev/null
-
-echo "####################################################################################################"
-echo "# Tag and Push: [${MODULE_NAME}]"
-echo "####################################################################################################"
-#docker tag ${MODULE_NAME}:1.0.0 ${OPENSHIFT_REGISTRY}/${PROJECT_NAME}/${MODULE_NAME}:${MODULE_TAG}
-#docker push ${OPENSHIFT_REGISTRY}/${PROJECT_NAME}/${MODULE_NAME}:${MODULE_TAG}
-
 echo "####################################################################################################"
 echo "# Update imagestream: [${MODULE_NAME}]"
 echo "####################################################################################################"
