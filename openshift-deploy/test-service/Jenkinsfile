@@ -5,7 +5,7 @@ pipeline {
 			steps {
 				sh 'echo "####################"'
 				sh 'echo "tag=${MODULE_TAG}"'
-				build job: 'test-service-to-dev', parameters: [string(name: 'MODULE_TAG', value: ${MODULE_TAG})]
+				build job: 'test-service-to-dev', parameters: [string(name: 'MODULE_TAG', value: "${MODULE_TAG}")]
 			}
 		}
 	}
