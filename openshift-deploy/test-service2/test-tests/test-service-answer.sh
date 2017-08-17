@@ -1,6 +1,6 @@
 RESP=$(curl -H "Content-Type: application/json" -X POST \
 	-d '{"name":"Ben","data":{"number":[1,3,51,3]}}' -sL \
-	"http://test-service-z-dev-project.apps.oc.ymelnik.ru/test-service/calculate")
+	"http://test-service2-z-test-project.apps.oc.ymelnik.ru/test-service2/getSum")
 
 echo $RESP
 
