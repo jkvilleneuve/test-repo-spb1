@@ -18,6 +18,7 @@ pipeline {
 		stage('ApproveToTest') {
 			steps {
 				sh 'echo "Wait for confirmation to install on the Test"'
+				input message: 'Deploy to Test?', ok: 'Deploy'
 			}
 		}
 		stage('DeployToTest') {
@@ -37,6 +38,7 @@ pipeline {
 		stage('ApproveToProd') {
 			steps {
 				sh 'echo "Wait for confirmation to install on the Prodaction"'
+				input message: 'Deploy to Production?', ok: 'Deploy'
 			}
 		}
 		stage('DeployToProd') {
