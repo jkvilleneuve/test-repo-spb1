@@ -24,11 +24,14 @@ pipeline {
 			steps {
 				sh 'echo "Run job for deploy test-service on Test OpenShift project"'
 				sh 'echo "tag=${MODULE_TAG}"'
+				build job: 'test-service-to-test', parameters: [string(name: 'MODULE_TAG', value: "${MODULE_TAG}")]
 			}
 		}
 		stage('TestsOnTest') {
 			steps {
 				sh 'echo "Run script to get right answer from test-service"'
+				sh 'chmod -R 777 ${WORKSPACE}/openshift-deploy/test-service/test-tests'
+				sh '${WORKSPACE}/openshift-deploy/test-service/test-tests/test-service-answer.sh'
 			}
 		}
 		stage('ApproveToProd') {
