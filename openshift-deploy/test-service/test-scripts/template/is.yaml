@@ -9,7 +9,7 @@ metadata:
     dockerImageRepository: ${DOCKER_REGISTRY}/${MODULE_NAME}:${MODULE_TAG}
 spec:
   tags:
-    - name: '${MODULE_TAG}'
+    - name: '1'
       annotations: null
       from:
         kind: DockerImage
