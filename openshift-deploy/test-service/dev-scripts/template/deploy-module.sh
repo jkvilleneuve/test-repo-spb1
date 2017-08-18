@@ -21,4 +21,4 @@ echo "##########################################################################
 oc delete imagestream ${MODULE_NAME} -n ${PROJECT_NAME}
 oc create -f ${MODULE_NAME}.is.yaml
 
-oc deploy ${MODULE_NAME} --latest -n ${PROJECT_NAME}
+#oc deploy ${MODULE_NAME} --latest -n ${PROJECT_NAME}
