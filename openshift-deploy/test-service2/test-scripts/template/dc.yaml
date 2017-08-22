@@ -29,7 +29,7 @@ spec:
         from:
           kind: ImageStreamTag
           namespace: ${PROJECT_NAME}
-          name: '${MODULE_NAME}:${MODULE_TAG}'
+          name: '${MODULE_NAME}:1'
   replicas: 1
   test: false
   paused: false
@@ -51,7 +51,7 @@ spec:
             claimName: nf-esb-home-volume-claim
       containers:
         - name: ${MODULE_NAME}
-          image: '/${PROJECT_NAME}/${MODULE_NAME}:${MODULE_TAG}'
+          image: '/${PROJECT_NAME}/${MODULE_NAME}:1'
           ports:
             - containerPort: ${MODULE_PORT}
               protocol: TCP
