@@ -23,9 +23,9 @@ for TEMPLATE in $(ls ${BUILD_SCRIPT_DIR}/template); do
 done
 
 WORK_DIR="openshift-deploy"
-ssh root@${MASTER_IP} mkdir -vp ${WORK_DIR}/dev/${MODULE_NAME} 2>/dev/null
-ssh root@${MASTER_IP} rm -rf ${WORK_DIR}/dev/${MODULE_NAME}/${MODULE_NAME}.*
-scp ${BUILD_SCRIPT_DIR}/tmp/${MODULE_NAME}.* root@${MASTER_IP}:${WORK_DIR}/dev/${MODULE_NAME}/
-ssh root@${MASTER_IP} "cd ${WORK_DIR}/dev/${MODULE_NAME};. ${MODULE_NAME}.deploy-module.sh"
+sudo ssh root@${MASTER_IP} mkdir -vp ${WORK_DIR}/dev/${MODULE_NAME} 2>/dev/null
+sudo ssh root@${MASTER_IP} rm -rf ${WORK_DIR}/dev/${MODULE_NAME}/${MODULE_NAME}.*
+sudo scp ${BUILD_SCRIPT_DIR}/tmp/${MODULE_NAME}.* root@${MASTER_IP}:${WORK_DIR}/dev/${MODULE_NAME}/
+sudo ssh root@${MASTER_IP} "cd ${WORK_DIR}/dev/${MODULE_NAME};. ${MODULE_NAME}.deploy-module.sh"
 
 exit
