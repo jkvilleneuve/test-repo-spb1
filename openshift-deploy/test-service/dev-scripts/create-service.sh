@@ -5,7 +5,7 @@ export PROJECT_NAME="z-dev-project"
 export BUILD_SCRIPT_DIR=${WORKSPACE}/openshift-deploy/${MODULE_NAME}/dev-scripts
 
 export DOCKER_REGISTRY="docker.io/jkvilleneuve"
-export ROUTE_HOST="z-dev-project.apps.oc.ymelnik.ru"
+export ROUTE_HOST="z-dev-project.apps.neoflex.ru"
 
 export MODULE_PORT=8081
 export MODULE_PATH="/${MODULE_NAME}/calculate"

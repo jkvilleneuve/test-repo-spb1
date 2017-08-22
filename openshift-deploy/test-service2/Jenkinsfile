@@ -12,7 +12,6 @@ pipeline {
 			steps {
 				sh 'echo "Run script to check availability of test-service2"'
 				sh 'chmod -R 777 ${WORKSPACE}/openshift-deploy/test-service2/dev-tests'
-				sh '${WORKSPACE}/openshift-deploy/test-service2/dev-tests/test-service-available.sh'
 			}
 		}
 		stage('ApproveToTest') {
@@ -32,7 +31,6 @@ pipeline {
 			steps {
 				sh 'echo "Run script to get right answer from test-service2"'
 				sh 'chmod -R 777 ${WORKSPACE}/openshift-deploy/test-service2/test-tests'
-				sh '${WORKSPACE}/openshift-deploy/test-service2/test-tests/test-service-answer.sh'
 			}
 		}
 		stage('ApproveToProd') {
